@@ -6,10 +6,10 @@ public abstract class User {
     private String lastName;
     private String userName;
     private String password;
-    private Long id;
+    private String id;
     private boolean isActive;
 
-    public User(String firstName, String lastName, String userName, String password, Long id, boolean isActive) {
+    public User(String firstName, String lastName, String userName, String password, String id, boolean isActive) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.userName = userName;
@@ -18,11 +18,11 @@ public abstract class User {
         this.isActive = isActive;
     }
 
-    public Long getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(String id) {
         this.id = id;
     }
 

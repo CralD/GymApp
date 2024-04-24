@@ -9,9 +9,10 @@ public class Training {
     private Date trainingDate;
     private  int trainingDuration;
 
-    private Long trainee;
+    private String trainee;
 
-    private Long trainer;
+    private String trainer;
+
 
     public Training(String trainingName, String trainingType, Date trainingDate, int trainingDuration, Trainee trainee, Trainer trainer) {
         this.trainingName = trainingName;
@@ -53,5 +54,21 @@ public class Training {
 
     public void setTrainingDuration(int trainingDuration) {
         this.trainingDuration = trainingDuration;
+    }
+
+    public String getTraineeId() {
+        return trainee;
+    }
+
+    public void setTrainee(String trainee) {
+        this.trainee = trainee;
+    }
+
+    public String getTrainerId() {
+        return trainer;
+    }
+
+    public void setTrainer(String trainer) {
+        this.trainer = trainer;
     }
 }
