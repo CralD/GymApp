@@ -19,10 +19,12 @@ public class TraineeDao {
         return (Trainee) storage.getById(id);
     }
     public void updateTrainee(Trainee trainee){
+
         storage.update(trainee.getId(),trainee);
     }
 
     public void deleteTrainee(Trainee trainee){
+
         storage.delete(trainee.getId());
     }
 }
