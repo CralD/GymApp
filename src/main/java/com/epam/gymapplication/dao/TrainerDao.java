@@ -12,6 +12,7 @@ public class TrainerDao {
     }
 
     public void createTrainer(Trainer trainer) {
+
         storage.save(trainer.getId(), trainer);
     }
     public Trainer selectTrainerById(String id){
