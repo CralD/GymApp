@@ -8,8 +8,8 @@ import static org.junit.jupiter.api.Assertions.*;
 class TrainerDaoTest {
     private TrainerDao trainerDao;
     private CommonInMemoryStorage storage;
-    Trainer trainer = new Trainer("John", "Doe", "password", "jdoe", "1", true, "Fitness");
-    Trainer trainer2 = new Trainer("Jane", "Doe", "password", "jdoe", "1", true, "Yoga");
+    Trainer trainer = new Trainer("Juan", "Garcia", "juga", "tra145", "1", true, "Fitness");
+    Trainer trainer2 = new Trainer("Juana", "Rodriguez", "lear178", "juro", "1", true , "Yoga");
 
     @BeforeEach
     public void setUp() {

@@ -20,6 +20,7 @@ public class TrainingDao {
     }
 
     public Training selectTraining(String id){
+
         return (Training) storage.getById(id);
     }
 }
