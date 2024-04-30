@@ -1,43 +1,64 @@
 package com.epam.gymapplication.dao;
 
+import com.epam.gymapplication.model.Trainee;
+import com.epam.gymapplication.model.Trainer;
+import com.epam.gymapplication.model.Training;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.mockito.Mock;
+import org.mockito.MockitoAnnotations;
 
-import static org.junit.jupiter.api.Assertions.*;
+import java.time.LocalDate;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.mockito.Mockito.when;
 
 class CommonInMemoryStorageTest {
-    private CommonInMemoryStorage storage;
+    @Mock
+    private CommonInMemoryStorage storageMock;
+
+    private Map<Long, Trainee> trainees;
+    private Map<Long, Trainer> trainers;
+    private Map<Long, Training> trainings;
+
+    Trainee trainee = new Trainee("Ana", "Arteaga", "123456789a", "Anar", 1L, true, LocalDate.of(1990, 1, 1), "calle 30 carrera 50");
+    Trainer trainer = new Trainer("Juan", "Arteaga", "12384565789b", "Juar", 1L, true, "Pilates");
+
+
     @BeforeEach
-    public void setUp() {
-        storage = new CommonInMemoryStorage();
+    public void setup() {
+        MockitoAnnotations.openMocks(this);
+        trainees = new HashMap<>();
+        trainers = new HashMap<>();
+        trainings = new HashMap<>();
+
+        trainees.put(1L, new Trainee("Ana", "Arteaga", "123456789a", "Anar", 1L, true, LocalDate.of(1990, 1, 1), "calle 30 carrera 50"));
+        trainers.put(1L,new Trainer("Ana", "Arteaga", "123456789a", "Anar", 1L, true,  "Fitness")) ;
+        trainings.put(1L, new Training("Pilates", "Agility", new Date(), 60,trainee,trainer));
+        when(storageMock.getTrainees()).thenReturn(trainees);
+        when(storageMock.getTrainers()).thenReturn(trainers);
+        when(storageMock.getTrainings()).thenReturn(trainings);
     }
 
     @Test
-    public void saveAndGetById() {
-        String id = "1";
-        Object object = new Object();
-        storage.save(id, object);
-        assertEquals(object, storage.getById(id), "Object should be retrieved by ID after being saved");
-    }
-
-
-
-    @Test
-    public void update() {
-        String id = "1";
-        Object object1 = new Object();
-        Object object2 = new Object();
-        storage.save(id, object1);
-        storage.update(id, object2);
-        assertEquals(object2, storage.getById(id), "Object should be updated to new value");
+    public void getTraineesTest() {
+        Map<Long, Trainee> trainees = storageMock.getTrainees();
+        assertNotNull(trainees);
     }
 
     @Test
-    void testDelete() {
-        String id = "1";
-        Object object = new Object();
-        storage.save(id, object);
-        storage.delete(id);
-        assertNull(storage.getById(id), "Object should be null after being deleted");
+    public void getTrainersTest() {
+        Map<Long, Trainer> trainers = storageMock.getTrainers();
+        assertNotNull(trainers);
+    }
+
+    @Test
+    public void getTrainingsTest() {
+        Map<Long, Training> trainings = storageMock.getTrainings();
+        assertNotNull(trainings);
     }
 }

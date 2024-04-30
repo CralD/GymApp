@@ -9,9 +9,9 @@ public class Training {
     private Date trainingDate;
     private  int trainingDuration;
 
-    private String trainee;
+    private long trainee;
 
-    private String trainer;
+    private Long trainer;
 
 
     public Training(String trainingName, String trainingType, Date trainingDate, int trainingDuration, Trainee trainee, Trainer trainer) {
@@ -56,19 +56,19 @@ public class Training {
         this.trainingDuration = trainingDuration;
     }
 
-    public String getTraineeId() {
+    public Long getTraineeId() {
         return trainee;
     }
 
-    public void setTrainee(String trainee) {
+    public void setTrainee(Long trainee) {
         this.trainee = trainee;
     }
 
-    public String getTrainerId() {
+    public Long getTrainerId() {
         return trainer;
     }
 
-    public void setTrainer(String trainer) {
+    public void setTrainer(Long trainer) {
         this.trainer = trainer;
     }
 }

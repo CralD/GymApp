@@ -1,26 +1,46 @@
 package com.epam.gymapplication.dao;
 
 import com.epam.gymapplication.model.Training;
+import org.springframework.beans.factory.annotation.Autowired;
 
-public class TrainingDao {
+import java.util.Map;
+
+public class TrainingDao implements Storage<Training> {
     private Storage storage;
-    private TrainerDao trainerDao;
-    private TraineeDao traineeDao;
+    private Map<Long, Training> trainings;
 
+
+    @Autowired
     public TrainingDao(CommonInMemoryStorage storage) {
-        this.storage = storage;
+        this.trainings = storage.getTrainings();
     }
 
-    public void createTraining(Training training) {
-        if (training.getTraineeId() == null || training.getTrainerId() == null){
-            throw new IllegalArgumentException("User id not found");
-        }else {
-            storage.save(training.getTraineeId() != null ? training.getTraineeId() : training.getTrainerId(), training);
+    @Override
+    public Training getById(Long id) {
+
+        return trainings.get(id);
+    }
+
+    @Override
+    public void save(Long id, Training training) {
+
+        trainings.put(id,training);
+    }
+
+    @Override
+    public void update(Long id, Training training) {
+
+        if(trainings.containsKey(id)) {
+            trainings.put(id, training);
         }
     }
 
-    public Training selectTraining(String id){
+    @Override
+    public void delete(Long id) {
 
-        return (Training) storage.getById(id);
+        trainings.remove(id);
     }
+
+
+
 }

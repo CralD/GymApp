@@ -1,5 +1,6 @@
 package com.epam.gymapplication.services;
 
+import com.epam.gymapplication.dao.Storage;
 import com.epam.gymapplication.dao.TraineeDao;
 import com.epam.gymapplication.model.Trainee;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,26 +8,26 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class TraineeService {
-    private TraineeDao traineeDao;
+    private Storage<Trainee> traineeDao;
 
     @Autowired
-    public TraineeService(TraineeDao traineeDao) {
+    public TraineeService(Storage<Trainee> traineeDao) {
         this.traineeDao = traineeDao;
     }
 
-    public void createTrainee(Trainee trainee){
-        traineeDao.createTrainee(trainee);
+    public Trainee getTraineeById(Long id) {
+        return traineeDao.getById(id);
     }
 
-    public void updateTrainee(Trainee trainee){
-        traineeDao.updateTrainee(trainee);
+    public void saveTrainee(Long id, Trainee trainee) {
+        traineeDao.save(id, trainee);
     }
 
-    public void deleteTrainee(Trainee trainee){
-        traineeDao.deleteTrainee(trainee);
+    public void updateTrainee(Long id, Trainee trainee) {
+        traineeDao.update(id, trainee);
     }
 
-    public Trainee selecTrainee(String id){
-       return traineeDao.selectTraineeById(id);
+    public void deleteTrainee(Long id) {
+        traineeDao.delete(id);
     }
 }

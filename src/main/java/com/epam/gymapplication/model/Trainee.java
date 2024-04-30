@@ -8,7 +8,7 @@ public class Trainee extends User {
      private LocalDate DateOfBirth;
      private String Address;
 
-     public Trainee(String firstName,String lastName,String password, String userName,String id,boolean isActive,LocalDate dateOfBirth, String address) {
+     public Trainee(String firstName,String lastName,String password, String userName,Long id,boolean isActive,LocalDate dateOfBirth, String address) {
           super(firstName,lastName,userName,password,id,isActive);
           DateOfBirth = dateOfBirth;
           Address = address;

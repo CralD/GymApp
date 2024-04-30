@@ -14,8 +14,8 @@ class TrainingTest {
     @BeforeEach
     public void setUp() {
         // Create a Trainee and a Trainer for the Training
-        Trainee trainee = new Trainee("pedro", "Hernandez", "b455q99", "peju", "1", true, LocalDate.of(1975, 6, 22), "carrera 22 calle 22");
-        Trainer trainer = new Trainer("Ana", "Arteaga", "Anar", "123456789a", "2", true, "Strength");
+        Trainee trainee = new Trainee("pedro", "Hernandez", "b455q99", "peju", 1L, true, LocalDate.of(1975, 6, 22), "carrera 22 calle 22");
+        Trainer trainer = new Trainer("Ana", "Arteaga", "Anar", "123456789a", 2L, true, "Strength");
 
         // Create a Training object
         String trainingName = "Weightlifting";
@@ -34,8 +34,8 @@ class TrainingTest {
         assertEquals("Strength Training",training.getTrainingType(),"Type should match");
         assertEquals(new Date(2024,06,24),training.getTrainingDate(),"Date should match");
         assertEquals(60,training.getTrainingDuration(),"Duration should match");
-        assertEquals("1",training.getTraineeId(),"Trainee id should match");
-        assertEquals("2",training.getTrainerId(),"Trainer id should match");
+        assertEquals(1L,training.getTraineeId(),"Trainee id should match");
+        assertEquals(2L,training.getTrainerId(),"Trainer id should match");
 
     }
     @Test
@@ -51,8 +51,8 @@ class TrainingTest {
         assertEquals("Agility Training",training.getTrainingType(),"Type should match");
         assertEquals(new Date(2024,07,28),training.getTrainingDate(),"Date should match");
         assertEquals(80,training.getTrainingDuration(),"Duration should match");
-        assertEquals("1",training.getTraineeId(),"Trainee id should match");
-        assertEquals("2",training.getTrainerId(),"Trainer id should match");
+        assertEquals(1L,training.getTraineeId(),"Trainee id should match");
+        assertEquals(2L,training.getTrainerId(),"Trainer id should match");
 
     }
 

@@ -11,7 +11,7 @@ class TrainerTest {
     private Trainer trainer;
     @BeforeEach
     public void setUp() {
-        trainer = new Trainer("Ana", "Arteaga", "Anar", "123456789a", "1", true, "Strength" );
+        trainer = new Trainer("Ana", "Arteaga", "Anar", "123456789a", 1L, true, "Strength" );
     }
     @Test
     public void createTrainerIsWorking(){
@@ -23,7 +23,7 @@ class TrainerTest {
         assertEquals("Arteaga", trainer.getLastName(), "Last name should match");
         assertEquals("123456789a", trainer.getPassword(), "Password should match");
         assertEquals("Anar", trainer.getUserName(), "Username should match");
-        assertEquals("1", trainer.getId(), "ID should match");
+        assertEquals(1L, trainer.getId(), "ID should match");
         assertEquals(true, trainer.isActive(), "Active status should match");
         assertEquals("Strength",trainer.getSpecialization(), "Date of Birth should match");
 
@@ -33,7 +33,7 @@ class TrainerTest {
         trainer.setFirstName("Raul");
         trainer.setLastName("Perez");
         trainer.setUserName("RauPer13");
-        trainer.setId("4");
+        trainer.setId(4L);
         trainer.setActive(false);
         trainer.setPassword("ra5533pe00");
 
@@ -41,7 +41,7 @@ class TrainerTest {
         assertEquals("Perez", trainer.getLastName(), "Last name should match");
         assertEquals("ra5533pe00", trainer.getPassword(), "Password should match");
         assertEquals("RauPer13", trainer.getUserName(), "Username should match");
-        assertEquals("4", trainer.getId(), "ID should match");
+        assertEquals(4L, trainer.getId(), "ID should match");
         assertEquals(false, trainer.isActive(), "Active status should match");
 
     }

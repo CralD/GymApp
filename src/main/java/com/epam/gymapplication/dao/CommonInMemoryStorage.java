@@ -1,30 +1,33 @@
 package com.epam.gymapplication.dao;
 
+import com.epam.gymapplication.model.Trainee;
+import com.epam.gymapplication.model.Trainer;
+import com.epam.gymapplication.model.Training;
+import com.epam.gymapplication.services.TrainingService;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.stereotype.Repository;
+
 import java.util.HashMap;
 import java.util.Map;
-
-public class CommonInMemoryStorage implements Storage{
-
-
-    private Map<String, Object> storage= new HashMap<>();
+@Configuration
+public class CommonInMemoryStorage {
 
 
-    @Override
-    public Object getById(String id) {
-        return storage.get(id);
-    }
-    @Override
-    public void save(String id,Object object){
-        storage.put(id,object);
-    }
-    @Override
-    public void update(String id,Object object){
-        storage.put(id,object);
+
+    private Map<Long, Trainee> trainees;
+    private Map<Long, Trainer> trainers;
+    private Map<Long, Training> trainings;
+
+
+    public Map<Long, Trainee> getTrainees() {
+        return trainees;
     }
 
-    @Override
-    public void delete(String id){
-        storage.remove(id);
+    public Map<Long, Trainer> getTrainers() {
+        return trainers;
     }
 
+    public Map<Long, Training> getTrainings() {
+        return trainings;
+    }
 }

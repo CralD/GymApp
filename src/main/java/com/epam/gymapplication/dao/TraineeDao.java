@@ -1,30 +1,46 @@
 package com.epam.gymapplication.dao;
 
 import com.epam.gymapplication.model.Trainee;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 
-public class TraineeDao {
+import java.util.Map;
+
+@Repository
+public class TraineeDao implements Storage<Trainee> {
     private Storage storage;
+    private Map<Long, Trainee> trainees;
 
+    @Autowired
     public TraineeDao(CommonInMemoryStorage storage) {
 
-        this.storage = storage;
+        this.trainees = storage.getTrainees();
     }
 
-    public void createTrainee(Trainee trainee){
 
-        storage.save(trainee.getId(),trainee);
-    }
-    public Trainee selectTraineeById(String id){
 
-        return (Trainee) storage.getById(id);
-    }
-    public void updateTrainee(Trainee trainee){
-
-        storage.update(trainee.getId(),trainee);
+    @Override
+    public Trainee getById(Long id) {
+        return trainees.get(id);
     }
 
-    public void deleteTrainee(Trainee trainee){
+    @Override
+    public void save(Long id, Trainee trainee) {
 
-        storage.delete(trainee.getId());
+        trainees.put(id,trainee);
+    }
+
+    @Override
+    public void update(Long id, Trainee trainee) {
+
+        if(trainees.containsKey(id)) {
+            trainees.put(id, trainee);
+        }
+    }
+
+    @Override
+    public void delete(Long id) {
+
+        trainees.remove(id);
     }
 }

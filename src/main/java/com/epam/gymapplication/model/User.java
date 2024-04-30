@@ -1,15 +1,15 @@
 package com.epam.gymapplication.model;
 
-public abstract class User implements UserInterface{
+public class User {
 
     private String firstName;
     private String lastName;
     private String userName;
     private String password;
-    private String id;
+    private Long id;
     private boolean isActive;
 
-    public User(String firstName, String lastName, String userName, String password, String id, boolean isActive) {
+    public User(String firstName, String lastName, String userName, String password, Long id, boolean isActive) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.userName = userName;
@@ -18,11 +18,11 @@ public abstract class User implements UserInterface{
         this.isActive = isActive;
     }
 
-    public String getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(long id) {
         this.id = id;
     }
 

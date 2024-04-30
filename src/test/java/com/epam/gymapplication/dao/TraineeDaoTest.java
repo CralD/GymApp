@@ -1,44 +1,82 @@
 package com.epam.gymapplication.dao;
 
 import com.epam.gymapplication.model.Trainee;
-import com.epam.gymapplication.model.Trainer;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.MockitoAnnotations;
+
 import java.time.LocalDate;
+import java.util.HashMap;
+import java.util.Map;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.Mockito.when;
 
 class TraineeDaoTest {
 
-    private TraineeDao traineeDao;
-    private CommonInMemoryStorage storage;
-    Trainee trainee = new Trainee("Juan", "Garcia", "tra145", "juga", "1", true, LocalDate.of(1990, 1, 1), "calle 57 carrera 100");
+    @Mock
+    private CommonInMemoryStorage storageMock;
 
+    @InjectMocks
+    private TraineeDao traineeDao;
 
     @BeforeEach
-    public void setUp() {
-        storage = new CommonInMemoryStorage();
-        traineeDao = new TraineeDao(storage);
+    void setUp() {
+        MockitoAnnotations.openMocks(this);
+        Map<Long, Trainee> trainees = new HashMap<>();
+        trainees.put(1L, new Trainee("Ana", "Arteaga", "123456789a", "Anar", 1L, true, LocalDate.of(1990, 1, 1), "calle 30 carrera 50"));
+        trainees.put(2L, new Trainee("Juan", "Naranjas", "12384565789b", "Juna", 2L, false, LocalDate.of(1980, 10, 22), "calle 45 carrera 87"));
+        when(storageMock.getTrainees()).thenReturn(trainees);
+        traineeDao = new TraineeDao(storageMock);
     }
+
     @Test
-    public void testCreateAndSelectTrainee() {
-          traineeDao.createTrainee(trainee);
-        assertEquals(trainee, traineeDao.selectTraineeById("1"), "Trainee should be retrieved by ID after being created");
+    void getById_existingTrainee_shouldReturnTrainee() {
+        Trainee trainee = traineeDao.getById(1L);
+        assertEquals("Ana", trainee.getFirstName());
     }
+
     @Test
-    public void testUpdateTrainee() {
-        Trainee trainee2 = new Trainee("Juana", "Rodriguez", "lear178", "juro" , "1", true, LocalDate.of(1999, 4, 4), "calle 99 carrera 44");
-        traineeDao.createTrainee(trainee);
-        traineeDao.updateTrainee(trainee2);
-        assertEquals(trainee2, traineeDao.selectTraineeById("1"), "Trainee should be updated to new value");
-        assertNotEquals(trainee,traineeDao.selectTraineeById("1"),"Trainee1 should not be equal to traineedDao because was updated");
+    void getById_nonExistingTrainee_shouldReturnNull() {
+        Trainee trainee = traineeDao.getById(100L);
+        assertEquals(null, trainee);
     }
+
     @Test
-    public void testDeleteTrainee() {
-        traineeDao.createTrainee(trainee);
-        traineeDao.deleteTrainee(trainee);
-        assertNull(traineeDao.selectTraineeById("1"), "Trainee should be null after being deleted");
+    void save_newTrainee_shouldAddTrainee() {
+        Trainee newTrainee = new Trainee("Rodrigo","perez","ro1111pe","Rope",3L,true,LocalDate.of(2001,7,9),"calle 7 carrera 2");
+        traineeDao.save(3L, newTrainee);
+        assertEquals(newTrainee, traineeDao.getById(3L));
+    }
+
+    @Test
+    void update_existingTrainee_shouldUpdateTrainee() {
+        Trainee updatedTrainee = new Trainee("Juan", "Arreaga", "12384565789b", "Juar", 2L, false, LocalDate.of(1980, 10, 22), "calle 45 carrera 87");
+        traineeDao.update(2L, updatedTrainee);
+        assertEquals(updatedTrainee, traineeDao.getById(2L));
+    }
+
+    @Test
+    void update_nonExistingTrainee_shouldNotUpdate() {
+        Trainee updatedTrainee = new Trainee("Juan", "Arreaga", "12384565789b", "Juar", 2L, false, LocalDate.of(1980, 10, 22), "calle 45 carrera 87");
+        traineeDao.update(100L, updatedTrainee);
+        assertEquals(null, traineeDao.getById(100L));
+    }
+
+    @Test
+    void delete_existingTrainee_shouldRemoveTrainee() {
+        traineeDao.delete(1L);
+        assertEquals(null, traineeDao.getById(1L));
+    }
+
+    @Test
+    void delete_nonExistingTrainee_shouldNotRemove() {
+        traineeDao.delete(100L);
+        assertEquals(null, traineeDao.getById(100L));
     }
 
 }
