@@ -1,0 +1,4 @@
+Trainee:
+"firstName","lastName","password","userName","id","isActive","dateOfBirth","address"
+"John","Doe","password123","john_doe",1,true,"1990-05-15","123 Main St"
+"Alice","Smith","alice123","alice_smith",2,true,"1988-10-20","456 Oak Ave"
