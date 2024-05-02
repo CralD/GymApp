@@ -3,15 +3,23 @@ package com.epam.gymapplication.dao;
 import com.epam.gymapplication.model.Trainee;
 import com.epam.gymapplication.model.Trainer;
 import com.epam.gymapplication.model.Training;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.mock.mockito.MockBean;
 
+import java.io.File;
+import java.io.IOException;
 import java.time.LocalDate;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.function.Function;
+import java.util.stream.Collectors;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
@@ -20,6 +28,8 @@ import static org.mockito.Mockito.when;
 class CommonInMemoryStorageTest {
     @Mock
     private CommonInMemoryStorage storageMock;
+    @MockBean
+    private ObjectMapper objectMapper;
 
     private Map<Long, Trainee> trainees;
     private Map<Long, Trainer> trainers;
@@ -61,4 +71,7 @@ class CommonInMemoryStorageTest {
         Map<Long, Training> trainings = storageMock.getTrainings();
         assertNotNull(trainings);
     }
+
+
+
 }
