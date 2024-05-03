@@ -10,8 +10,6 @@ import java.time.LocalDate;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
-import static org.junit.jupiter.api.Assertions.*;
-
 class TraineeServiceTest {
 
     @InjectMocks
@@ -57,10 +55,6 @@ class TraineeServiceTest {
         traineeService.saveTrainee(1L, trainee);
 
         verify(traineeDao, times(1)).save(anyLong(), any(Trainee.class));
-    }
-    @Test
-    public void testSaveTraineeWithSameName() {
-
     }
 
 

@@ -1,7 +1,6 @@
 package com.epam.gymapplication.services;
 
 import com.epam.gymapplication.dao.Storage;
-import com.epam.gymapplication.dao.TraineeDao;
 import com.epam.gymapplication.model.Trainee;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

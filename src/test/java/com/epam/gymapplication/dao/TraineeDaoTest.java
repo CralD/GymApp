@@ -1,7 +1,6 @@
 package com.epam.gymapplication.dao;
 
 import com.epam.gymapplication.model.Trainee;
-
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -12,8 +11,8 @@ import org.mockito.MockitoAnnotations;
 import java.time.LocalDate;
 import java.util.HashMap;
 import java.util.Map;
-
 import static org.junit.jupiter.api.Assertions.*;
+
 import static org.mockito.Mockito.when;
 
 class TraineeDaoTest {

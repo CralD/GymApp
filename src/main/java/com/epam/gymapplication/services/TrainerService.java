@@ -1,7 +1,6 @@
 package com.epam.gymapplication.services;
 
 import com.epam.gymapplication.dao.Storage;
-import com.epam.gymapplication.dao.TrainerDao;
 import com.epam.gymapplication.model.Trainee;
 import com.epam.gymapplication.model.Trainer;
 import org.springframework.beans.factory.annotation.Autowired;

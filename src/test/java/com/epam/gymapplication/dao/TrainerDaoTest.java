@@ -1,5 +1,5 @@
 package com.epam.gymapplication.dao;
-import com.epam.gymapplication.model.Trainee;
+
 import com.epam.gymapplication.model.Trainer;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -7,7 +7,6 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
-import java.time.LocalDate;
 import java.util.HashMap;
 import java.util.Map;
 
