@@ -5,4 +5,6 @@ public interface Storage <T> {
     void save(Long id, T t);
     void update(Long id, T t);
     void delete(Long id);
+
+    boolean existByuserName(String username);
 }

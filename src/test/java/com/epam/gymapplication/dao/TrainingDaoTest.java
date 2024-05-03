@@ -34,7 +34,7 @@ class TrainingDaoTest {
     public void setup() {
         MockitoAnnotations.openMocks(this);
         trainings = new HashMap<>();
-        trainings.put(1L, new Training("Pilates", "Agility", new Date(), 60,trainee,trainer));
+        trainings.put(1L, new Training("Pilates", "Agility", LocalDate.of(1990, 1, 1), 60,trainee,trainer));
         when(storageMock.getTrainings()).thenReturn(trainings);
         trainingDao = new TrainingDao(storageMock);
     }
@@ -52,20 +52,20 @@ class TrainingDaoTest {
 
     @Test
     public void save_newTraining_shouldAddTraining() {
-        Training newTraining = new Training("Yoga", "Agility", new Date(), 60,trainee,trainer);
+        Training newTraining = new Training("Yoga", "Agility", LocalDate.of(1996, 11, 12), 60,trainee,trainer);
         trainingDao.save(2L, newTraining);
         assertEquals(newTraining, trainingDao.getById(2L));
     }
 
     @Test
     public void update_existingTraining_shouldUpdateTraining() {
-        Training updatedTraining = new Training("Aerobics", "Agility", new Date(), 45,trainee,trainer);
+        Training updatedTraining = new Training("Aerobics", "Agility", LocalDate.of(1994, 5, 9), 45,trainee,trainer);
         trainingDao.update(1L, updatedTraining);
         assertEquals(updatedTraining, trainingDao.getById(1L));
     }
     @Test
     void update_nonExistingTraining_shouldNotUpdate() {
-        Training updatedTraining = new Training("Aerobics", "Agility", new Date(), 45,trainee,trainer);
+        Training updatedTraining = new Training("Aerobics", "Agility", LocalDate.of(1990, 1, 1), 45,trainee,trainer);
         trainingDao.update(100L, updatedTraining);
         assertEquals(null, trainingDao.getById(100L));
     }

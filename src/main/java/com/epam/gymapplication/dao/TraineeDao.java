@@ -43,4 +43,11 @@ public class TraineeDao implements Storage<Trainee> {
 
         trainees.remove(id);
     }
+
+    @Override
+    public boolean existByuserName(String username) {
+        return trainees.values().stream().anyMatch(t -> t.getUserName().equals(username));
+    }
+
+
 }

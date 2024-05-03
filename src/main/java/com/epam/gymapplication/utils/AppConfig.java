@@ -2,11 +2,11 @@ package com.epam.gymapplication.utils;
 
 
 import com.epam.gymapplication.dao.CommonInMemoryStorage;
+import jakarta.annotation.PostConstruct;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.ComponentScan;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.Scope;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.*;
+import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
 import org.springframework.core.env.Environment;
 
 import java.util.HashMap;
@@ -14,21 +14,14 @@ import java.util.Map;
 
 
 @Configuration
-@ComponentScan(basePackages = {"com.epam.gymapplication"})
-
+@PropertySource("classpath:application.properties")
 public class AppConfig {
 
-    @Autowired
-    private Environment environment;
+
+
 
     @Bean
-    public CommonInMemoryStorage commonInMemoryStorage(){
-        CommonInMemoryStorage storage = new CommonInMemoryStorage();
-
-        // Accessing properties from the environment
-        String propertyValue = environment.getProperty("property.key");
-        // Use the property value to initialize your storage object
-
-        return storage;
+    public static PropertySourcesPlaceholderConfigurer propertyConfigInDev() {
+        return new PropertySourcesPlaceholderConfigurer();
     }
 }

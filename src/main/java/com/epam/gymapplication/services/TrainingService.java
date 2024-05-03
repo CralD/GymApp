@@ -17,11 +17,11 @@ public class TrainingService {
     }
 
 
-    public Training getTrainerById(Long id) {
+    public Training getTrainingById(Long id) {
         return trainingDao.getById(id);
     }
 
-    public void saveTrainer(Long id, Training training) {
+    public void saveTraining(Long id, Training training) {
         trainingDao.save(id, training);
     }
 

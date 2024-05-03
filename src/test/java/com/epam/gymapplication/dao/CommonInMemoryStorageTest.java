@@ -48,7 +48,7 @@ class CommonInMemoryStorageTest {
 
         trainees.put(1L, new Trainee("Ana", "Arteaga", "123456789a", "Anar", 1L, true, LocalDate.of(1990, 1, 1), "calle 30 carrera 50"));
         trainers.put(1L,new Trainer("Ana", "Arteaga", "123456789a", "Anar", 1L, true,  "Fitness")) ;
-        trainings.put(1L, new Training("Pilates", "Agility", new Date(), 60,trainee,trainer));
+        trainings.put(1L, new Training("Pilates", "Agility", LocalDate.of(1990, 1, 1), 60,trainee,trainer));
         when(storageMock.getTrainees()).thenReturn(trainees);
         when(storageMock.getTrainers()).thenReturn(trainers);
         when(storageMock.getTrainings()).thenReturn(trainings);

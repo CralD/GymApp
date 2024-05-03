@@ -1,4 +1,0 @@
-Trainer:
-"firstName","lastName","userName","password","id","isActive","specialization"
-"Michael","Johnson","michael_j","pass456",1,true,"Fitness"
-"Sara","Brown","sara_b","strongpass",2,true,"Yoga"

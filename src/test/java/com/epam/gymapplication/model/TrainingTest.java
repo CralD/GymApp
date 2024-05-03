@@ -20,7 +20,7 @@ class TrainingTest {
         // Create a Training object
         String trainingName = "Weightlifting";
         String trainingType = "Strength Training";
-        Date trainingDate = new Date(2024, 06, 24);
+        LocalDate trainingDate = LocalDate.of(2024, 06, 24);
         int trainingDuration = 60; // in minutes
 
         training = new Training(trainingName, trainingType, trainingDate, trainingDuration, trainee, trainer);
@@ -32,7 +32,7 @@ class TrainingTest {
 
         assertEquals("Weightlifting",training.getTrainingName(),"Name should match");
         assertEquals("Strength Training",training.getTrainingType(),"Type should match");
-        assertEquals(new Date(2024,06,24),training.getTrainingDate(),"Date should match");
+        assertEquals(LocalDate.of(2024,06,24),training.getTrainingDate(),"Date should match");
         assertEquals(60,training.getTrainingDuration(),"Duration should match");
         assertEquals(1L,training.getTraineeId(),"Trainee id should match");
         assertEquals(2L,training.getTrainerId(),"Trainer id should match");
@@ -41,7 +41,7 @@ class TrainingTest {
     @Test
     public void setMethodsAreWorking(){
 
-        training.setTrainingDate(new Date(2024,7,28));
+        training.setTrainingDate(LocalDate.of(2024,7,28));
         training.setTrainee(training.getTraineeId());
         training.setTrainer(training.getTrainerId());
         training.setTrainingDuration(80);
@@ -49,7 +49,7 @@ class TrainingTest {
         training.setTrainingType("Agility Training");
         assertEquals("Running",training.getTrainingName(),"Name should match");
         assertEquals("Agility Training",training.getTrainingType(),"Type should match");
-        assertEquals(new Date(2024,07,28),training.getTrainingDate(),"Date should match");
+        assertEquals(LocalDate.of(2024,07,28),training.getTrainingDate(),"Date should match");
         assertEquals(80,training.getTrainingDuration(),"Duration should match");
         assertEquals(1L,training.getTraineeId(),"Trainee id should match");
         assertEquals(2L,training.getTrainerId(),"Trainer id should match");

@@ -1,12 +1,13 @@
 package com.epam.gymapplication.model;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 public class Training {
 
     private String trainingName;
     private String trainingType;
-    private Date trainingDate;
+    private LocalDate trainingDate;
     private  int trainingDuration;
 
     private long trainee;
@@ -14,7 +15,7 @@ public class Training {
     private Long trainer;
 
 
-    public Training(String trainingName, String trainingType, Date trainingDate, int trainingDuration, Trainee trainee, Trainer trainer) {
+    public Training(String trainingName, String trainingType, LocalDate trainingDate, int trainingDuration, Trainee trainee, Trainer trainer) {
         this.trainingName = trainingName;
         this.trainingType = trainingType;
         this.trainingDate = trainingDate;
@@ -40,11 +41,11 @@ public class Training {
         this.trainingType = trainingType;
     }
 
-    public Date getTrainingDate() {
+    public LocalDate getTrainingDate() {
         return trainingDate;
     }
 
-    public void setTrainingDate(Date trainingDate) {
+    public void setTrainingDate(LocalDate trainingDate) {
         this.trainingDate = trainingDate;
     }
 

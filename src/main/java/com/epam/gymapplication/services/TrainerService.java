@@ -7,6 +7,9 @@ import com.epam.gymapplication.model.Trainer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.security.SecureRandom;
+import java.util.stream.Collectors;
+
 @Service
 public class TrainerService {
     private Storage<Trainer> trainerDao;
@@ -21,6 +24,10 @@ public class TrainerService {
     }
 
     public void saveTrainer(Long id, Trainer trainer) {
+        String username = generateUsername(trainer.getFirstName(), trainer.getLastName());
+        String password = generatePassword();
+        trainer.setUserName(username);
+        trainer.setPassword(password);
         trainerDao.save(id, trainer);
     }
 
@@ -28,5 +35,22 @@ public class TrainerService {
         trainerDao.update(id, trainer);
     }
 
+    private String generateUsername(String firstName, String lastName) {
+        String baseUsername = firstName + "." + lastName;
+        String username = baseUsername;
+        int suffix = 1;
+        while (trainerDao.existByuserName(username)) {
+            username = baseUsername + suffix++;
+        }
+        return username;
+    }
+    private String generatePassword() {
+        SecureRandom random = new SecureRandom();
+        return random.ints(48, 122)
+                .filter(i -> (i <= 57 || i >= 65) && (i <= 90 || i >= 97))
+                .mapToObj(i -> String.valueOf((char) i))
+                .limit(10)
+                .collect(Collectors.joining());
+    }
 
 }

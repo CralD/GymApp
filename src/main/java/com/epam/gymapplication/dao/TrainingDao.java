@@ -2,9 +2,10 @@ package com.epam.gymapplication.dao;
 
 import com.epam.gymapplication.model.Training;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 
 import java.util.Map;
-
+@Repository
 public class TrainingDao implements Storage<Training> {
     private Storage storage;
     private Map<Long, Training> trainings;
@@ -41,6 +42,10 @@ public class TrainingDao implements Storage<Training> {
         trainings.remove(id);
     }
 
+    @Override
+    public boolean existByuserName(String username) {
+        return false;
+    }
 
 
 }
