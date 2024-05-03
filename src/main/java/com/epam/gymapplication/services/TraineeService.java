@@ -4,13 +4,16 @@ import com.epam.gymapplication.dao.Storage;
 import com.epam.gymapplication.model.Trainee;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import java.security.SecureRandom;
 import java.util.stream.Collectors;
+
 
 @Service
 public class TraineeService {
     private Storage<Trainee> traineeDao;
+    private static final Logger logger = LoggerFactory.getLogger(TraineeService.class);
 
     @Autowired
     public TraineeService(Storage<Trainee> traineeDao) {
@@ -27,6 +30,7 @@ public class TraineeService {
         trainee.setUserName(username);
         trainee.setPassword(password);
         traineeDao.save(id, trainee);
+        logger.info("Trainee saved with id: {}", id);
     }
 
     public void updateTrainee(Long id, Trainee trainee) {
@@ -35,10 +39,12 @@ public class TraineeService {
         trainee.setUserName(username);
         trainee.setPassword(password);
         traineeDao.update(id, trainee);
+        logger.info("Trainee updated with id: {}", id);
     }
 
     public void deleteTrainee(Long id) {
         traineeDao.delete(id);
+        logger.info("Trainee deleted with id: {}", id);
     }
     private String generateUsername(String firstName, String lastName) {
         String baseUsername = firstName + "." + lastName;
